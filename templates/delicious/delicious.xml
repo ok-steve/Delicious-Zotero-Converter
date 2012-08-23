@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="/static/delicious.xsl"?>
+<modsCollection xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-2.xsd" xmlns="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  {% for post in posts %}<mods>
+    <titleInfo>
+      <title>{{ post.description }}</title>
+    </titleInfo>
+    <typeOfResource>multimedia</typeOfResource>
+    <genre authority="local">webpage</genre>
+    <genre authority="marcgt">web site</genre>
+    <originInfo>
+      <dateCaptured>{{ post.time }}</dateCaptured>
+    </originInfo>
+    <location>
+      <url>{{ post.href }}</url>
+    </location>
+    {% if post.extended %}
+    <note type="content">{{ post.extended }}</note>
+    {% endif %}
+    {% for tag in post.tags %}<subject>
+        <topic>{{ tag }}</topic>
+    </subject>{% endfor %}
+  </mods>{% endfor %}
+</modsCollection>
