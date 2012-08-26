@@ -5,110 +5,110 @@
 {% block page_name %}Delicious to Zotero Converter{% endblock %}
 
 {% block sidebar %}
-	<h2>Instructions</h2>
-	<p>This app will take your Delicious.com library and convert it to a format (MODS) that can be ingested into Zotero. If that sounds like something you want to do, just enter your Delicious username and password.</p>
-	<div class="alert">
-		<p><strong>Please note:</strong> <a href="http://www.gaggl.com/2011/10/export-delicious-bookmarks-in-xml/">Delicious can only export 1,000 records at a time</a>. If you have more than 1,000 bookmarks, you&rsquo;ll need to filter by tag or date and do multiple exports.</p>
-	</div>
+    <h2>Instructions</h2>
+    <p>This app will take your Delicious.com library and convert it to a format (MODS) that can be ingested into Zotero. If that sounds like something you want to do, just enter your Delicious username and password.</p>
+    <div class="alert">
+        <p><strong>Please note:</strong> <a href="http://www.gaggl.com/2011/10/export-delicious-bookmarks-in-xml/">Delicious can only export 1,000 records at a time</a>. If you have more than 1,000 bookmarks, you&rsquo;ll need to filter by tag or date and do multiple exports.</p>
+    </div>
 
-	<p>You can then save the resulting file and import it into Zotero.</p>
-	<p>If you have any issues please <a href="mailto:sc@stevecherry.net?subject=Delicious to Zotero Converter">send me an email</a>.</p>
-	<p>And no, I don&rsquo;t save your passwords or do anything else with them.</p>
+    <p>You can then save the resulting file and import it into Zotero.</p>
+    <p>If you have any issues please <a href="mailto:sc@stevecherry.net?subject=Delicious to Zotero Converter">send me an email</a>.</p>
+    <p>And no, I don&rsquo;t save your passwords or do anything else with them. You can see <a href="https://github.com/sccherry/Delicious-Zotero-Converter">source code on Github</a> if you want to check.</p>
 {% endblock %}
 
 {% block content %}
-	{% if error %}<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ error }}</div>{% endif %}
-	<form class="form-vertical" method="post" action="{% url delicious_home %}" enctype="multipart/form-data">
+    {% if error %}<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ error }}</div>{% endif %}
+    <form class="form-vertical" method="post" action="{% url delicious_home %}" enctype="multipart/form-data">
 
-		{% if form.non_field.errors %}
-			<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.non_field.errors }}</div>
-		{% endif %}
+        {% if form.non_field.errors %}
+            <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.non_field.errors }}</div>
+        {% endif %}
 
-		<div class="well">
-			<div class="control-group">
-				{% if form.username.errors %}
-					<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.username.errors }}</div>
-				{% endif %}
-				
-				{{ form.username.label }}
-        {{ form.username }}
-  	  </div>
-			
-			<div class="control-group">
-				{% if form.password.errors %}
-					<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.password.errors }}</div>
-				{% endif %}
+        <div class="well">
+            <div class="control-group">
+                {% if form.username.errors %}
+                    <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.username.errors }}</div>
+                {% endif %}
 
-				{{ form.password.label }}
-        {{ form.password }}
-	    </div>
-		</div>
+                {{ form.username.label }}
+                {{ form.username }}
+                </div>
 
-		<div class="well">
-			<fieldset>
-				<legend>Limit by dates (optional)</legend>
-				<div class="control-group">
-					<h4>From</h4>
-					{% if form.from_month.errors or form.from_day.errors or form.from_year.errors %}
-						<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>
-							{{ form.from_month.errors }}<br/>
-							{{ form.from_day.errors }}<br/>
-							{{ form.from_year.errors }}
-						</div>
-					{% endif %}
+            <div class="control-group">
+                {% if form.password.errors %}
+                    <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.password.errors }}</div>
+                {% endif %}
 
-					{{ form.from_month.label }}
-	        {{ form.from_month }}
- 
-					{{ form.from_day.label }}
-      	  {{ form.from_day }}
+                {{ form.password.label }}
+                {{ form.password }}
+            </div>
+        </div>
 
-					{{ form.from_year.label }}
-  	      {{ form.from_year }}
-					<span class="help-block">{{ form.from_year.help_text }}</span>
-  		  </div>
+        <div class="well">
+            <fieldset>
+                <legend>Limit by dates (optional)</legend>
+                <div class="control-group">
+                    <h4>From</h4>
+                    {% if form.from_month.errors or form.from_day.errors or form.from_year.errors %}
+                        <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>
+                            {{ form.from_month.errors }}<br/>
+                            {{ form.from_day.errors }}<br/>
+                            {{ form.from_year.errors }}
+                        </div>
+                    {% endif %}
 
-				<div class="control-group">
-					<h4>To</h4>
-					{% if form.to_month.errors or form.to_day.errors or form.to_year.errors %}
-						<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>
-							{{ form.to_month.errors }}<br/>
-							{{ form.to_day.errors }}<br/>
-							{{ form.to_year.errors }}
-						</div>
-					{% endif %}
+                    {{ form.from_month.label }}
+                    {{ form.from_month }}
 
-					{{ form.to_month.label }}
-  	      {{ form.to_month }}
+                    {{ form.from_day.label }}
+                    {{ form.from_day }}
 
-					{{ form.to_day.label }}
-    	    {{ form.to_day }}
+                    {{ form.from_year.label }}
+                    {{ form.from_year }}
+                    <span class="help-block">{{ form.from_year.help_text }}</span>
+                </div>
 
-					{{ form.to_year.label }}
-    	    {{ form.to_year }}
-					<span class="help-block">{{ form.to_year.help_text }}</span>
-  	  	</div>
-			</fieldset>
-		</div>
+                <div class="control-group">
+                    <h4>To</h4>
+                    {% if form.to_month.errors or form.to_day.errors or form.to_year.errors %}
+                        <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>
+                            {{ form.to_month.errors }}<br/>
+                            {{ form.to_day.errors }}<br/>
+                            {{ form.to_year.errors }}
+                        </div>
+                    {% endif %}
 
-		<div class="well">
-			<fieldset>
-				<legend>Limit by tags (optional)</legend>
-				<div class="control-group">
-					{% if form.tags.errors %}
-						<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.tags.errors }}</div>
-					{% endif %}
+                    {{ form.to_month.label }}
+                    {{ form.to_month }}
 
-					{{ form.tags.label }}
-      	  {{ form.tags }}
-					<span class="help-block">{{ form.tags.help_text }}</span>
-	  	  </div>
-			</fieldset>
-		</div>
-		<p><input type="submit" class="btn" value="Convert" /></p>
-	</form>
+                    {{ form.to_day.label }}
+                    {{ form.to_day }}
+
+                    {{ form.to_year.label }}
+                    {{ form.to_year }}
+                    <span class="help-block">{{ form.to_year.help_text }}</span>
+                </div>
+            </fieldset>
+        </div>
+
+        <div class="well">
+            <fieldset>
+                <legend>Limit by tags (optional)</legend>
+                <div class="control-group">
+                    {% if form.tags.errors %}
+                        <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.tags.errors }}</div>
+                    {% endif %}
+
+                    {{ form.tags.label }}
+                    {{ form.tags }}
+                    <span class="help-block">{{ form.tags.help_text }}</span>
+                </div>
+            </fieldset>
+        </div>
+        <p><input type="submit" class="btn" value="Convert" /></p>
+    </form>
 {% endblock %}
 
 {% block js %}
-	<script type="text/javascript" src="/static/js/libs/bootstrap/bootstrap-alert.js"></script>
+    <script type="text/javascript" src="/static/js/libs/bootstrap/bootstrap-alert.js"></script>
 {% endblock %}
