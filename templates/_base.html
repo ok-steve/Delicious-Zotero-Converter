@@ -18,7 +18,7 @@
 
     {% block css %}{% endblock %}
 
-    <script src="/static/js/libs/modernizr-2.5.3.min.js"></script>
+    <script src="/static/js/vendor/modernizr-2.5.3.min.js"></script>
     {% block preload_js %}{% endblock %}
 
     <link rel="shortcut icon" href="/static/img/favicon.ico">
@@ -58,13 +58,14 @@
 		{% endblock %}
 	</div><!-- /.container -->
 
+	<script src="/static/js/vendor/jquery-1.7.1.min.js"></script>
+    {% block js %}{% endblock %}
+
     <script>
         var _gaq=[['_setAccount','UA-19261191-2'],['_trackPageview']];
         (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
         g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
         s.parentNode.insertBefore(g,s)}(document,'script'));
     </script>
-
-    {% block js %}{% endblock %}
 </body>
 </html>
