@@ -104,7 +104,7 @@ class MainHandler(webapp2.RequestHandler):
         
         
         self.response.headers["Content-Type"] = "application/x-download"
-        self.response.headers['Content-Disposition'] = 'attachment; filename=zotero.xml'
+        self.response.headers['Content-Disposition'] = 'attachment; filename=delicious-zotero.xml'
         path = os.path.join(os.path.dirname(__file__), 'templates/delicious.xml')
         self.response.out.write(template.render(path, params))
                 #return doRender(self, 'delicious.xml', params)
