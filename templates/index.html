@@ -1,4 +1,4 @@
-{% extends "delicious/layout.html" %}
+{% extends "_base.html" %}
 
 {% block title %}Delicious to Zotero Converter{% endblock %}
 
@@ -18,7 +18,7 @@
 
 {% block content %}
     {% if error %}<div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ error }}</div>{% endif %}
-    <form class="form-vertical" method="post" action="{% url delicious_home %}" enctype="multipart/form-data">
+    <form class="form-vertical" method="post" action="/" enctype="multipart/form-data">
 
         {% if form.non_field.errors %}
             <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.non_field.errors }}</div>
@@ -30,8 +30,8 @@
                     <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.username.errors }}</div>
                 {% endif %}
 
-                {{ form.username.label }}
-                {{ form.username }}
+                {{ form.username.label|safe }}
+                {{ form.username|safe }}
                 </div>
 
             <div class="control-group">
@@ -39,8 +39,8 @@
                     <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.password.errors }}</div>
                 {% endif %}
 
-                {{ form.password.label }}
-                {{ form.password }}
+                {{ form.password.label|safe }}
+                {{ form.password|safe }}
             </div>
         </div>
 
@@ -57,14 +57,14 @@
                         </div>
                     {% endif %}
 
-                    {{ form.from_month.label }}
-                    {{ form.from_month }}
+                    {{ form.from_month.label|safe }}
+                    {{ form.from_month|safe }}
 
-                    {{ form.from_day.label }}
-                    {{ form.from_day }}
+                    {{ form.from_day.label|safe }}
+                    {{ form.from_day|safe }}
 
-                    {{ form.from_year.label }}
-                    {{ form.from_year }}
+                    {{ form.from_year.label|safe }}
+                    {{ form.from_year|safe }}
                     <span class="help-block">{{ form.from_year.help_text }}</span>
                 </div>
 
@@ -78,14 +78,14 @@
                         </div>
                     {% endif %}
 
-                    {{ form.to_month.label }}
-                    {{ form.to_month }}
+                    {{ form.to_month.label|safe }}
+                    {{ form.to_month|safe }}
 
-                    {{ form.to_day.label }}
-                    {{ form.to_day }}
+                    {{ form.to_day.label|safe }}
+                    {{ form.to_day|safe }}
 
-                    {{ form.to_year.label }}
-                    {{ form.to_year }}
+                    {{ form.to_year.label|safe }}
+                    {{ form.to_year|safe }}
                     <span class="help-block">{{ form.to_year.help_text }}</span>
                 </div>
             </fieldset>
@@ -99,8 +99,8 @@
                         <div class="alert alert-error"><a class="close" data-dismiss="alert">x</a>{{ form.tags.errors }}</div>
                     {% endif %}
 
-                    {{ form.tags.label }}
-                    {{ form.tags }}
+                    {{ form.tags.label|safe }}
+                    {{ form.tags|safe }}
                     <span class="help-block">{{ form.tags.help_text }}</span>
                 </div>
             </fieldset>
@@ -110,5 +110,5 @@
 {% endblock %}
 
 {% block js %}
-    <script type="text/javascript" src="/static/js/libs/bootstrap/bootstrap-alert.js"></script>
+    <script type="text/javascript" src="/static/js/vendor/bootstrap/bootstrap-alert.js"></script>
 {% endblock %}
